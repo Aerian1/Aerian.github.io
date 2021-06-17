@@ -14,23 +14,28 @@ var picture = document.querySelector('canvas#picture');
 picture.width = 320;
 picture.height = 240;
 
+// audioplayer
+var audioplayer = document.querySelector('video#audioplayer');
+
+
 function start() {
 	if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
 		console.log('getUserMedia is not supported!');
 	} else {
 		var deviceId = videoSource.value;
 		var constrants = {
-			video: {
-				width: {
-					min: 300,
-					max: 1000
-				},
-				height: 480,
-				frameRate: 60,
-				deviceId: deviceId ? deviceId : undefined,
+			// video: {
+			// 	width: {
+			// 		min: 300,
+			// 		max: 1000
+			// 	},
+			// 	height: 480,
+			// 	frameRate: 60,
+			// 	deviceId: deviceId ? deviceId : undefined,
 
-			},
-			audio: false
+			// },
+			video: false,
+			audio: true
 		}
 		navigator.mediaDevices.getUserMedia(constrants)
 			.then(gotMediaStream)
@@ -40,7 +45,8 @@ function start() {
 }
 
 function gotMediaStream(stream) {
-	videoplay.srcObject = stream;
+	// videoplay.srcObject = stream;
+	audioplayer.srcObject = stream;
 	return navigator.mediaDevices.enumerateDevices();
 }
 
