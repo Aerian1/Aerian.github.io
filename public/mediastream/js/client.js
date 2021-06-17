@@ -49,7 +49,7 @@ function start() {
 function gotMediaStream(stream) {
 	videoplay.srcObject = stream;
 	var videoTrack = stream.getVideoTracks()[0];
-	var videoConstraints = videoTrack.getSetting();
+	var videoConstraints = videoTrack.getSettings();
 
 	divConstraints.textContent = JSON.stringify(videoConstraints, null, 2);
 
