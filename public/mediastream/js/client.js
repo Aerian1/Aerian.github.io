@@ -29,7 +29,7 @@ var audioplayer = document.querySelector('video#audioplayer');
 var divConstraints = document.querySelector('div#constraints');
 
 function start() {
-	if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+	if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
 		console.log('getUserMedia is not supported!');
 	} else {
 		var deviceId = videoSource.value;
@@ -48,7 +48,7 @@ function start() {
 			// video: false,
 			audio: false
 		}
-		navigator.mediaDevices.getDisplayMedia(constrants)
+		navigator.mediaDevices.getUserMedia(constrants)
 			.then(gotMediaStream)
 			.then(gotDevices)
 			.catch(handleError);
