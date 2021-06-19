@@ -129,7 +129,7 @@ function startRecord() {
 		return;
 	}
 	try {
-		mediaRecorder = new mediaRecorder(window.stream, options);
+		mediaRecorder = new MediaRecorder(window.stream, options);
 	} catch (e) {
 		console.error('Failed to create MediaRecorder:', e);
 		return;
