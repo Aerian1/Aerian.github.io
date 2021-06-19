@@ -29,7 +29,7 @@ var audioplayer = document.querySelector('video#audioplayer');
 var divConstraints = document.querySelector('div#constraints');
 
 function start() {
-	if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+	if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
 		console.log('getUserMedia is not supported!');
 	} else {
 		var deviceId = videoSource.value;
@@ -48,7 +48,7 @@ function start() {
 			// video: false,
 			audio: false
 		}
-		navigator.mediaDevices.getUserMedia(constrants)
+		navigator.mediaDevices.getDisplayMedia(constrants)
 			.then(gotMediaStream)
 			.then(gotDevices)
 			.catch(handleError);
@@ -166,7 +166,7 @@ btnDownload.onclick = function () {
 	var a = document.createElement('a');
 
 	a.href = url;
-	// a.style.display = 'none';
+	a.style.display = 'none';
 	a.download = 'aaa.webm';
 	a.click();
 }
