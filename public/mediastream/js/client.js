@@ -11,6 +11,13 @@ var filtersSelect = document.querySelector('select#filter');
 // picture
 var snapshot = document.querySelector('button#snapshot');
 var picture = document.querySelector('canvas#picture');
+
+// record
+var recplayer = document.querySelector('video#recplayer');
+var btnRecord = document.querySelector('button#record');
+var btnPlay = document.querySelector('button#recplay');
+var btnDownload = document.querySelector('button#download');
+
 picture.width = 320;
 picture.height = 240;
 
@@ -47,7 +54,9 @@ function start() {
 }
 
 function gotMediaStream(stream) {
+	window.stream = stream;
 	videoplay.srcObject = stream;
+
 	var videoTrack = stream.getVideoTracks()[0];
 	var videoConstraints = videoTrack.getSettings();
 
@@ -92,4 +101,55 @@ filtersSelect.onchange = function () {
 snapshot.onclick = function () {
 	picture.className = filtersSelect.value;
 	picture.getContext('2d').drawImage(videoplay, 0, 0, picture.width, picture.height);
+}
+
+btnRecord.onclick = function () {
+	if (btnRecord.textContent === 'Start Record') {
+		startRecord();
+		btnRecord.textContent = 'Stop Record';
+		btnPlay.disabled = true;
+		btnDownload.disabled = true;
+	} else {
+		stopRecord();
+		btnRecord.textContent = 'Start Record';
+		btnPlay.disabled = false;
+		btnDownload.disabled = false;
+	}
+}
+
+function startRecord() {
+	buffer = [];
+	var options = {
+		mimeType: 'video/webm;codecs=vp8'
+	}
+	if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+		console.error('${options.mimeType} is not supported!');
+		return;
+	}
+	try {
+		mediaRecorder = new mediaRecorder(window.stream, options);
+	} catch (e) {
+		console.error('Failed to create MediaRecorder:', e);
+		return;
+	}
+	mediaRecorder.ondataavailable = handleDataAvailable;
+	mediaRecorder.start(10);
+}
+
+function handleDataAvailable(e) {
+	if (e && e.data && e.data.size > 0) {
+		buffer.push(e.data);
+	}
+}
+
+function stopRecord(){
+	mediaRecorder.stop();
+}
+
+btnPlay.onclick = function(){
+	var blob = new Blob(buffer, {type: 'video/webm'});
+	recplayer.src = window.URL.createObjectURL(blob);
+	recplayer.srcObject = null;
+	recplayer.controls = true;
+	recplayer.play();
 }
