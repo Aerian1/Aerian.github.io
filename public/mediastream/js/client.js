@@ -144,14 +144,29 @@ function handleDataAvailable(e) {
 	}
 }
 
-function stopRecord(){
+function stopRecord() {
 	mediaRecorder.stop();
 }
 
-btnPlay.onclick = function(){
-	var blob = new Blob(buffer, {type: 'video/webm'});
+btnPlay.onclick = function () {
+	var blob = new Blob(buffer, {
+		type: 'video/webm'
+	});
 	recplayer.src = window.URL.createObjectURL(blob);
 	recplayer.srcObject = null;
 	recplayer.controls = true;
 	recplayer.play();
+}
+
+btnDownload.onclick = function () {
+	var blob = new Blob(buffer, {
+		type: 'video/webm'
+	});
+	var url = window.URL.createObjectURL(blob);
+	var a = document.createElement('a');
+
+	a.href = url;
+	// a.style.display = 'none';
+	a.download = 'aaa.webm';
+	a.click();
 }
