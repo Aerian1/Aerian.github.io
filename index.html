@@ -13,20 +13,6 @@
     <ul>
         <li><a href="./public/device/index.html">设备获取</a></li>
         <li><a href="./public/mediastream/index.html">获取音视频</a></li>
-        <div>test
-            <script>
-                navigator.mediaDevices.getDisplayMedia({
-                    video: true
-                }).then(stream => {
-                    document.getElementById("test").srcObject = stream;
-                }).catch(error => {
-                    console.log(error);
-                });
-            </script>
-
-            </html>
-
-        </div>
     </ul>
 </body>
 
