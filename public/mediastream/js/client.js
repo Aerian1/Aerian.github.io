@@ -17,6 +17,8 @@ var recplayer = document.querySelector('video#recplayer');
 var btnRecord = document.querySelector('button#record');
 var btnPlay = document.querySelector('button#recplay');
 var btnDownload = document.querySelector('button#download');
+var buffer;
+var mediaRecorder;
 
 picture.width = 320;
 picture.height = 240;
