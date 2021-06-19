@@ -45,7 +45,7 @@ function start() {
 				deviceId: deviceId ? deviceId : undefined,
 
 			},
-			// video: false,
+			video: true,
 			audio: false
 		}
 		navigator.mediaDevices.getDisplayMedia(constrants)
