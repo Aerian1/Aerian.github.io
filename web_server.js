@@ -41,7 +41,7 @@ app.use(express.static('./public'));
 
 //http server
 var http_server = http.createServer(app);
-http_server.listen(80, '0.0.0.0');
+http_server.listen(8000);
 
 var options = {
     key: fs.readFileSync('./cert/key.pem'),
