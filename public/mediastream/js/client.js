@@ -7,9 +7,11 @@ var videoSource = document.querySelector("select#videoSource");
 
 // filter
 var filtersSelect = document.querySelector('select#filter');
+var shareButton = document.querySelector('')
 
 // picture
 var snapshot = document.querySelector('button#snapshot');
+var sharescreen = document.querySelector('button#sharescreen');
 var picture = document.querySelector('canvas#picture');
 
 // record
