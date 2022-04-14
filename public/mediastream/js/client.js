@@ -94,7 +94,7 @@ function handleError(err) {
 	console.log("getUserMedia: " + err);
 }
 
-start();
+sharescreen.onclick = start;
 
 videoSource.onchange = start;
 
