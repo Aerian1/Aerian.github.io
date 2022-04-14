@@ -30,7 +30,7 @@ var audioplayer = document.querySelector('video#audioplayer');
 var divConstraints = document.querySelector('div#constraints');
 
 sharescreen.onclick = start;
-
+start();
 function start() {
 	alert('share1');
 	if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
