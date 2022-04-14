@@ -30,7 +30,7 @@ var audioplayer = document.querySelector('video#audioplayer');
 
 var divConstraints = document.querySelector('div#constraints');
 
-function start() {
+sharescreen.onclick = function () {
 	if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
 		console.log('getUserMedia is not supported!');
 	} else {
@@ -94,7 +94,6 @@ function handleError(err) {
 	console.log("getUserMedia: " + err);
 }
 
-sharescreen.onclick = start;
 
 videoSource.onchange = start;
 
