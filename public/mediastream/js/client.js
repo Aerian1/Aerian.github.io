@@ -29,8 +29,10 @@ var audioplayer = document.querySelector('video#audioplayer');
 
 var divConstraints = document.querySelector('div#constraints');
 
-sharescreen.onclick = function () {
-	alert('share');
+sharescreen.onclick = start;
+
+function start() {
+	alert('share1');
 	if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
 		console.log('getUserMedia is not supported!');
 	} else {
@@ -56,7 +58,6 @@ sharescreen.onclick = function () {
 			.catch(handleError);
 	}
 }
-
 
 function gotMediaStream(stream) {
 	window.stream = stream;
@@ -94,7 +95,6 @@ function gotDevices(deviceInfos) {
 function handleError(err) {
 	console.log("getUserMedia: " + err);
 }
-
 
 videoSource.onchange = start;
 
